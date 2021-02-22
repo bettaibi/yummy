@@ -1,2 +1,2 @@
 # yummy
-yummy is a recipe react application (App is in progress)
+Yammy is an application which teaches you to cook by providing recipes, videos to follow.
