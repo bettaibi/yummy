@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Yummy",
+  "name": "Yummy",
+  "description": "Created by Nidhal Bettaibi",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,7 +20,7 @@
     }
   ],
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "display": "fullscreen",
+  "theme_color": "#ffffff",
+  "background_color": "#ff0058"
 }

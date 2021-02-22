@@ -1,0 +1,42 @@
+$primary-color: #ff0058;
+$muted-color: #70757a;
+$background-color: #fff;
+$font-color: #111;
+$font-stack: 'Roboto', Arial, sans-serif;
+
+
+%flex{
+    display: flex;
+    align-items: center;
+}
+
+@mixin flexColumn {
+    @extend %flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+@mixin flexCenter {
+    @extend %flex;
+    justify-content: center;
+}
+
+@mixin mq {
+    @media only screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    background-color: $background-color;
+    font-family: $font-stack;
+    width: 100vw;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+}
