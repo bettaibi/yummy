@@ -1,5 +1,251 @@
 
-.none{
+.d-none{
     display: none;
 }
 
+.d-block{
+    display: block;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.flex-row{
+  flex-direction: row;
+}
+
+.flex-center{
+    align-items: center;
+    justify-content: center;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: $font-color;
+}
+
+.p1{
+    padding: 1rem;
+}
+.px-1{
+    padding: 0 1rem;
+}
+.py-1{
+    padding: 1rem 0;
+}
+
+.m1{
+    margin: 1rem;
+}
+.mx-1{
+    margin: 0 1rem;
+}
+.my-1{
+    margin: 1rem 0;
+}
+
+.mr1{
+    margin-right: 1rem;
+}
+.ml1{
+    margin-left: 1rem;
+}
+.mb1{
+    margin-bottom: 1rem;
+}
+.mt1{
+    margin-top: 1rem;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.shadow {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.h-100{
+    height: 100%;
+}
+
+.rounded {
+    border-radius: .25rem;
+}
+
+.rounded-circle{
+    border-radius: 50%;
+}
+
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
+.text-left{
+    text-align: left;
+}
+
+.text-capitalize{
+    text-transform: capitalize;
+}
+.text-uppercase{
+    text-transform: uppercase;
+}
+
+.hidden-overflow{
+    overflow: hidden;
+}
+
+.link{
+    font-size: 14px;
+    font-weight: 600;
+    color: $default-link-color;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.form-group{
+    margin-bottom: 1rem;
+
+    label{
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        &.error{
+            color: $error-color;
+        }
+    }
+
+    .form-message{
+        display: block;
+        margin-top: 0.25rem;
+        &.error{
+            color: $error-color;
+        }
+        &.default{
+            color: $muted-color;
+        }
+    }
+    .small{
+        font-size: 80%;
+        font-weight: 400;
+    }
+}
+
+.form-control{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #444;
+    background-color: #fdfdfd;
+    background-clip: padding-box;
+    border: 1px solid #bbb;
+    border-radius: 0.25rem;
+    outline: none;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    &:focus{
+        border: 1px solid $muted-color;
+        box-shadow: 0 0 0 0.2rem rgba($muted-color, 0.4);
+        background-color: #fff;
+    }
+
+    &.error{
+        border: 1px solid $error-color !important;
+        background-color: #fff !important;
+        box-shadow: none !important;
+    }
+}
+
+.btn{
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    overflow: visible;
+    font-family: $font-stack;
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 300ms ease-in-out;
+    @extend .shadow-sm;
+
+    &.raised{
+        min-width: 64px;
+        line-height: 36px;
+        padding: 0 16px;
+        border-radius: 4px;
+    }
+
+    &.fab{
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        flex-shrink: 0;
+    }
+
+    &.mini-fab{
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        flex-shrink: 0;
+    }
+
+    &:disabled{
+        background-color: rgba(0,0,0,.12) !important;
+        color: rgba(0,0,0,.26) !important;
+        box-shadow: none !important;
+        cursor: default !important;
+    }
+
+    &.btn-primary{
+        background-color: $primary-color;
+        color: #fff;
+    }
+    
+    &.btn-google{
+        background-color: #d73d32;
+        color: #fff;
+    }
+
+    &.btn-facebook{
+        background-color: #3f5c9a;
+        color: #fff;
+    }
+
+    &:active{
+        transform: scale(0.98);
+        @extend .shadow;
+    }
+}

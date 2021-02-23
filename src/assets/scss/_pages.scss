@@ -1,0 +1,28 @@
+// LOGIN PAGE
+.or-separator{
+    position: relative;
+    color: $muted-color;
+    font-size: 16px;
+    font-weight: 600;
+    &::after{
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 1px;
+        top: 50%;
+        right: -76px;
+        transform: translateY(-50%);
+        background-color: $muted-color;
+    }
+    &::before{
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 1px;
+        top: 50%;
+        left: -76px;
+        transform: translateY(-50%);
+        background-color: $muted-color;
+    }
+
+}

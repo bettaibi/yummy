@@ -1,7 +1,9 @@
 $primary-color: #ff0058;
 $muted-color: #70757a;
 $background-color: #fff;
-$font-color: #111;
+$error-color: #e21b05;
+$font-color: #222;
+$default-link-color: #039be5;
 $font-stack: 'Roboto', Arial, sans-serif;
 
 
@@ -21,7 +23,7 @@ $font-stack: 'Roboto', Arial, sans-serif;
     justify-content: center;
 }
 
-@mixin mq {
+@mixin media-breakpoint-up-sm {
     @media only screen and (min-width: 768px) {
         @content;
     }
@@ -39,4 +41,6 @@ html, body{
     width: 100vw;
     min-height: 100vh;
     scroll-behavior: smooth;
+    line-height: 1.5;
+    color: $font-color;
 }
