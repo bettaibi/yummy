@@ -1,33 +1,30 @@
-$primary-color: #ff0058;
-$muted-color: #70757a;
-$background-color: #fff;
-$error-color: #e21b05;
-$font-color: #222;
-$default-link-color: #039be5;
+$primary:       #ff0058 !default;
+$muted:         #70757a !default;
+$secondary:     #6c757d !default;
+$success:       #28a745 !default;
+$info:          #17a2b8 !default;
+$warning:       #ffc107 !default;
+$danger:        #dc3545 !default;
+$light:         #f8f9fa !default;
+$dark:          #343a40 !default;
+$body:          #fff !default;
+$border:        rgba(0,0,0,.12) !default;
+
 $font-stack: 'Roboto', Arial, sans-serif;
 
-
-%flex{
-    display: flex;
-    align-items: center;
-}
-
-@mixin flexColumn {
-    @extend %flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-@mixin flexCenter {
-    @extend %flex;
-    justify-content: center;
-}
-
-@mixin media-breakpoint-up-sm {
-    @media only screen and (min-width: 768px) {
-        @content;
-    }
-}
+$theme-colors: (
+  "body": $body,
+  "border": $border,
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+  "muted":      $muted
+) !default;
 
 * {
     padding: 0;
@@ -36,11 +33,11 @@ $font-stack: 'Roboto', Arial, sans-serif;
 }
 
 html, body{
-    background-color: $background-color;
+    background-color: map-get($theme-colors, "body");
     font-family: $font-stack;
     width: 100vw;
     min-height: 100vh;
     scroll-behavior: smooth;
     line-height: 1.5;
-    color: $font-color;
+    color: map-get($theme-colors, "dark" );
 }
