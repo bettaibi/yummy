@@ -24,12 +24,17 @@
     justify-content: center;
 }
 
+.flex-space-between{
+    align-items: center;
+    justify-content: space-between;
+}
+
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin-bottom: .5rem;
     font-family: inherit;
     font-weight: 500;
     line-height: 1.2;
-    color: $font-color;
+    color: map-get($theme-colors, "dark");
 }
 
 .p1{
@@ -95,6 +100,10 @@
 
 .h-100{
     height: 100%;
+}
+
+.vh-100{
+    height: 100vh !important;
 }
 
 .rounded {
@@ -208,6 +217,7 @@
     font-family: $font-stack;
     font-size: 16px;
     font-weight: 600;
+    color: #fff;
     transition: transform 300ms ease-in-out;
     @extend .shadow-sm;
 
@@ -243,17 +253,38 @@
 
     &.btn-primary{
         background-color: map-get($theme-colors, "primary");;
-        color: #fff;
+    }
+
+    &.btn-secondary{
+        background-color: map-get($theme-colors, "secondary");;
+    }
+
+    &.btn-danger{
+        background-color: map-get($theme-colors, "danger");;
+    }
+
+    &.btn-success{
+        background-color: map-get($theme-colors, "success");;
+    }
+
+    &.btn-info{
+        background-color: map-get($theme-colors, "info");;
+    }
+
+    &.btn-white{
+        background-color: map-get($theme-colors, "light");;
+    }
+
+    &.btn-dark{
+        background-color: map-get($theme-colors, "dark");;
     }
     
     &.btn-google{
         background-color: #d73d32;
-        color: #fff;
     }
 
     &.btn-facebook{
         background-color: #3f5c9a;
-        color: #fff;
     }
 
     &:active{
@@ -261,3 +292,192 @@
         @extend .shadow;
     }
 }
+
+.text-break {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+}
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+.text-primary{
+    color: map-get($theme-colors, "primary");
+}
+.text-secondary{
+    color: map-get($theme-colors, "secondary");
+}
+.text-success{
+    color: map-get($theme-colors, "success");
+}
+.text-info{
+    color: map-get($theme-colors, "info");
+}
+.text-danger{
+    color: map-get($theme-colors, "danger");
+}
+.text-dark{
+    color: map-get($theme-colors, "dark");
+}
+.text-white{
+    color: map-get($theme-colors, "light");
+}
+
+.bg-white{
+    background-color: #fff;
+}
+.bg-dark{
+    background-color: map-get($theme-colors, "dark" );
+}
+
+.border-bottom{
+    border-bottom: 1px solid map-get($theme-colors, "border");
+}
+.border-top{
+    border-top: 1px solid map-get($theme-colors, "border");
+}
+
+/* CONTAINER */
+.container{
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 1rem;
+}
+
+@include mediaXs{
+    .xs-none{
+        display: none;
+    }
+    .container{
+        width: 100%;
+    }
+}
+@include mediaSm{
+    .sm-none{
+        display: none;
+    }
+    .container{
+        max-width: 540px;
+    }
+}
+@include mediaMd{
+    .md-none{
+        display: none;
+    }
+    .container{
+        max-width: 720px;
+    }
+}
+@include mediaLg{
+    .lg-none{
+        display: none;
+    }
+    .container{
+        max-width: 960px;
+    }
+}
+@include mediaXlg{
+    .xl-none{
+        display: none;
+    }
+    .container{
+        max-width: 1140px;
+    }
+}
+
+/* OVERLAY */
+.overlay-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0, 0.5);
+    animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+/* COMPONENTS */
+
+// Tooltip
+[data-tooltip]{
+    position: relative;
+    display: inline-block;
+ 
+    &:after{
+     content: attr(data-tooltip);
+     position: absolute;
+     width: 120px;
+     height: fit-content;
+     text-align: center;
+     bottom: 100%;
+     left: 50%;
+     margin-bottom: 5px;
+     margin-left: -60px;
+     background-color: #555;
+     color: #fff;
+     padding: 0.25rem;
+     border-radius: 4px;
+     opacity: 0;
+     z-index: 1400;
+     transition: opacity 0.4s ease;
+     @extend .shadow-sm;
+   }
+ 
+   &:hover{
+     &:after{
+         opacity: 1;
+     }
+   }
+   &[data-placement="bottom"]{
+     &:after{
+         top: 100%;
+         left: 50%;
+         right: auto;
+         bottom: auto;
+         margin-bottom: 0;
+         margin-top: 5px;
+     }
+   }
+   &[data-placement="left"]{
+     &:after{
+       top: -5px;
+       right: 105%;
+        bottom: auto;
+       left: auto;
+       margin-bottom: 0;
+       margin-left: 0px;
+     }
+   }
+   &[data-placement="right"]{
+     &:after{
+       top: -5px;
+       left: 105%;
+       bottom: auto;
+       right: auto;
+       margin-bottom: 0;
+       margin-left: 0px;
+     }
+   }
+ }
+
+ .card{
+     border-radius: .25rem;
+     background-color: map-get($theme-colors, "light");
+     &.elevated{
+        @extend .shadow;
+     }
+     &.outlined{
+         border: 1px solid map-get($theme-colors, "border");
+     }
+ }
+

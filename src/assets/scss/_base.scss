@@ -35,9 +35,10 @@ $theme-colors: (
 html, body{
     background-color: map-get($theme-colors, "body");
     font-family: $font-stack;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     scroll-behavior: smooth;
     line-height: 1.5;
     color: map-get($theme-colors, "dark" );
+    overflow: hidden;
 }

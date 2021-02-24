@@ -1,7 +1,7 @@
 // LOGIN PAGE
 .or-separator{
     position: relative;
-    color: $muted-color;
+    color: map-get($theme-colors, "muted" );
     font-size: 16px;
     font-weight: 600;
     &::after{
@@ -12,7 +12,7 @@
         top: 50%;
         right: -76px;
         transform: translateY(-50%);
-        background-color: $muted-color;
+        background-color: map-get($theme-colors, "muted" );
     }
     &::before{
         content: '';
@@ -22,7 +22,121 @@
         top: 50%;
         left: -76px;
         transform: translateY(-50%);
-        background-color: $muted-color;
+        background-color: map-get($theme-colors, "muted" );
     }
 
+}
+
+// Home Page
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    .logo-text{
+        display: block;
+        height: 35px;
+        overflow: hidden;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+.main{
+    margin-top: 50px;
+    height: calc(100vh - 55px);
+    width: 100%;
+    overflow-y: auto;
+    .tags{
+        .tag{
+            padding: 0.25rem 0.8rem;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            font-weight: 500;
+            color: map-get($theme-colors, "dark");
+            border-radius: 20px;
+            margin: 0 0.3rem;
+            cursor: pointer;
+            &:hover{
+                background-color: lightgray;
+            }
+        }
+    }
+}
+
+.menu-tab{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;
+    text-align: center;
+    z-index: 9;
+    a{
+        text-decoration: none;
+        img{
+            display: block;
+            filter: opacity(0.5);
+        }
+        span{
+            font-weight: 600;
+        }
+
+        &.active{
+            img{
+                filter: none;
+            }
+            span{
+                @extend .text-dark;
+            }
+        }
+    }
+}
+
+.search-wrapper{
+    position: relative;
+    background-image: url(../img/bg.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    align-items: center;
+    justify-content: flex-start;
+
+    & > *{
+        z-index: 5;
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.5);
+    }
+
+    .search{
+        width: 100%;
+        height: 46px;
+        border-radius: 22px;
+        overflow: hidden;
+        input{
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            margin-left: 0.5rem;
+            padding: 0 0.25rem;
+            font-size: 16px;
+        }
+        img{
+            margin: 0 0.5rem;
+            height: 28px;
+            filter: opacity(0.5);
+        }
+    }
 }
