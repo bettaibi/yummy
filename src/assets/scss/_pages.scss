@@ -43,25 +43,49 @@
             width: 100%;
         }
     }
+    .user-avatar{
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 }
 
 .main{
-    margin-top: 50px;
-    height: calc(100vh - 55px);
-    width: 100%;
-    overflow-y: auto;
+    margin-top: 100px;
+    height: 100%;
+    padding-bottom: 55px;
     .tags{
+        background-color: #fafafa;
+        position: fixed;
+        top: 50px;
+        height: 50px;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        padding: 0 0.75rem;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        &::-webkit-scrollbar{
+            display: none;
+        }
         .tag{
-            padding: 0.25rem 0.8rem;
-            background-color: #f2f2f2;
+            padding: 0.2rem 0.8rem;
+            background-color: #fff;
             border: 1px solid #ccc;
             font-weight: 500;
             color: map-get($theme-colors, "dark");
-            border-radius: 20px;
-            margin: 0 0.3rem;
+            border-radius: .25rem;
+            margin: 0 .25rem;
+            text-align: center;
             cursor: pointer;
             &:hover{
-                background-color: lightgray;
+                background-color: #f2f2f2;
             }
         }
     }
@@ -105,6 +129,7 @@
     color: #fff;
     align-items: center;
     justify-content: flex-start;
+    height: calc(100vh - 155px);
 
     & > *{
         z-index: 5;
@@ -116,7 +141,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,.5);
+        background-color: rgba(0,0,0,.7);
     }
 
     .search{
@@ -124,19 +149,35 @@
         height: 46px;
         border-radius: 22px;
         overflow: hidden;
+        min-width: 200px;
+        max-width: 450px;
         input{
-            width: 100%;
-            height: 100%;
+            width: 95%;
+            height: 90%;
             border: none;
             outline: none;
             margin-left: 0.5rem;
             padding: 0 0.25rem;
             font-size: 16px;
         }
+        button{
+            margin: 0 0.3rem;
+        }
         img{
-            margin: 0 0.5rem;
-            height: 28px;
-            filter: opacity(0.5);
+            filter: invert(1);
+        }
+    }
+}
+
+.recipe-card{
+    width: 280px;
+    .recipe-cover{
+        width: 80%;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 }

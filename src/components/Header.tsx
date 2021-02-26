@@ -1,6 +1,7 @@
 import React from 'react'
 
 import logoText from '../assets/img/logo-text.png';
+import profileImg from '../assets/img/profile.jpg';
 
 const Header = () => {
     return (
@@ -9,6 +10,10 @@ const Header = () => {
                 {/* <img src={logoText} alt="Text logo"/> */}
                 Yammy
             </a>
+
+            <div className="user-avatar">
+                <img src={profileImg} alt="user-avatar"/>
+            </div>
 
             {/* AVATAR */}
         </header>
