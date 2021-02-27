@@ -5,17 +5,19 @@ import profileImg from '../assets/img/profile.jpg';
 
 const Header = () => {
     return (
-        <header className="d-flex flex-row flex-space-between bg-white border-bottom p1 navbar" style={{height: '50px'}}>
-            <a className="logo-text d-flex flex-center">
-                {/* <img src={logoText} alt="Text logo"/> */}
-                Yammy
-            </a>
+        <header className="bg-white border-bottom navbar" style={{height: '50px'}}>
+            
+            <div className="container p1 d-flex flex-row flex-space-between h-100">
+                <a className="logo-text d-flex flex-center">
+                    {/* <img src={logoText} alt="Text logo"/> */}
+                    Yammy
+                </a>
 
-            <div className="user-avatar">
-                <img src={profileImg} alt="user-avatar"/>
+                <div className="user-avatar">
+                    <img src={profileImg} alt="user-avatar"/>
+                </div>
             </div>
-
-            {/* AVATAR */}
+          
         </header>
     )
 }

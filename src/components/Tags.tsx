@@ -2,7 +2,8 @@ import React from 'react'
 
 const Tags: React.FC = () => {
     return (
-        <div className="d-flex flex-row flex-center shadow-sm bg-white tags" style={{height: '50px'}}>
+        <div className="shadow-sm tags" style={{height: '50px'}}>
+            <div className="container d-flex flex-row h-100" style={{alignItems:'center', justifyContent:'flex-start'}}>
                 <span className="tag">
                     Recently searched
                 </span>
@@ -27,7 +28,7 @@ const Tags: React.FC = () => {
                 <span className="tag">
                     Cake
                 </span>
-
+            </div>
         </div>
     )
 }

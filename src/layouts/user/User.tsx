@@ -1,12 +1,18 @@
 import React from 'react'
+import Header from '../../components/Header';
+import MenuTab from '../../components/MenuTab';
+import Favorite from '../../pages/Favorite/Favorite';
 
 import Home from '../../pages/Home';
 
-const User = () => {
+const User: React.FC = () => {
     return (
-        <div>
-            <Home />
-        </div>
+        <React.Fragment>
+            <Header />
+              {/* <Home /> */}
+              <Favorite />
+            <MenuTab />
+        </React.Fragment>
     )
 }
 
