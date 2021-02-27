@@ -1,0 +1,17 @@
+.theme-setting{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid;
+    &.light{
+        background-color: #f8f9fa;
+        margin-right: 0.5rem;
+    }
+    &.dark{
+        background-color: #343a40;
+    }
+
+    &.active{
+        border-color: #ff0058;
+    }
+}
