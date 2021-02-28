@@ -29,7 +29,7 @@ const LanguageSetting: React.FC = () =>{
     )
 }
 
-const ThemeSetting: React.FC = () =>{
+const ThemeSetting: React.FC = () => {
 
     return(
         <div className="mb1">
@@ -42,7 +42,7 @@ const ThemeSetting: React.FC = () =>{
     )
 }
 
-const ChangePasswordSetting: React.FC = () =>{
+const ChangePasswordSetting: React.FC = () => {
 
     return (
         <div className="mb1">
@@ -71,7 +71,7 @@ const ChangePasswordSetting: React.FC = () =>{
     )
 }
 
-const AccountSetting: React.FC = () =>{
+const AccountSetting: React.FC = () => {
 
     return (
         <div className="mb1">

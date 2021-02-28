@@ -1,6 +1,6 @@
 import React from 'react'
 
-import logo from '../assets/img/logo76.png';
+import logo from '../../assets/img/logo76.png';
 
 const Register = () => {
     return (
@@ -9,7 +9,7 @@ const Register = () => {
                <img src={logo} alt="app-logo" className="h-100 w-100"/>
            </div>
            <h2 className="text-uppercase mb1">Create an Account</h2>
-           <form className="w-100">
+           <form className="w-100" autoComplete="off">
                <div className="form-group">
                    <label htmlFor="name">Name *</label>
                    <input type="text" id="name" name="name" className="form-control"

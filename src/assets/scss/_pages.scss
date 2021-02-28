@@ -197,6 +197,31 @@
     }
 }
 
+.recipe-pic-container{
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    .nav-header{
+        position: absolute;
+        height: 50px;
+        background-color: transparent;
+    }
+}
+
+.slide-down-header{
+    position: fixed;
+    top: -50px;
+    transition: top 0.3s;
+    z-index: 99999;
+}
+
 @keyframes moveDown{
     from{
         transform: translateY(0);
