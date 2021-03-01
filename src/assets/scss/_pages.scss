@@ -27,6 +27,27 @@
 
 }
 
+.separator{
+    margin: 0 1rem;
+    width: 60%;
+    height: 1px;
+    background-color: map-get($theme-colors, "border");
+}
+
+.pull{
+    width: 35px;
+    height: 35px;
+    border: 1px solid map-get($theme-colors, "border");
+    border-radius: 50%;
+    transition: background-color 300ms ease-out, transform 300ms ease-out;
+    &.active{
+        background-color: map-get($theme-colors, "primary" );
+        color: #fff;
+        transform: scale(1.2);
+        border: none;
+    }
+}
+
 // Home Page
 .navbar{
     position: fixed;
