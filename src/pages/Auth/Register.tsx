@@ -17,7 +17,8 @@ const ErrorMessageSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Invalid Email').required('Email is required'),
     password: Yup.string().required('Password is required').min(6, 'Password should has 6 letters or more.'),
-    confirmPassword: Yup.string().required('Password is required').min(6, 'Password should has 6 letters or more.'),
+    confirmPassword: Yup.string().required('Password is required').min(6, 'Password should has 6 letters or more.')
+    .oneOf([Yup.ref('password')], "Password must match")
 })
 
 const Register = () => {

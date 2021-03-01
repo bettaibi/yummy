@@ -3,7 +3,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import logo from '../../assets/img/logo76.png';
 
-
 interface ResetPasswordForm{
     email: string;
     code: string;
@@ -16,6 +15,7 @@ const ErrorMessageShema = Yup.object().shape({
     code: Yup.string().required('Code is Required'),
     password: Yup.string().required('Password Is required').min(6, "Password should be greater or equal to 6"),
     confirmPassword: Yup.string().required('This Field is required').min(6, "Password should be greater or equal to 6")
+    .oneOf([Yup.ref('password')], 'Password must match')
 });
 
 const initialValues: ResetPasswordForm = { email: '', code: '', password: '', confirmPassword: '' };
