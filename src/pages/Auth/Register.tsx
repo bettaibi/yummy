@@ -1,9 +1,11 @@
-import React from 'react';
-import { Formik } from 'formik';
+import React, { ComponentProps } from 'react';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
-
 import logo from '../../assets/img/logo76.png';
+
+import { Formik } from 'formik';
+import { Link } from 'react-router-dom';
+import { register } from '../../services/AuthService';
+import { useHistory } from 'react-router-dom';
 
 interface RegisterForm {
     name: string;
@@ -22,7 +24,28 @@ const ErrorMessageSchema = Yup.object().shape({
     .oneOf([Yup.ref('password')], "Password must match")
 })
 
-const Register = () => {
+const Register: React.FC = () => {
+    const history = useHistory();
+
+    const create = async (values: RegisterForm) =>{
+        try{
+           let created = await register({
+               email: values.email, 
+               name: values.name, 
+               password: values.password
+            });
+            if(created){
+                localStorage.setItem('token', created.id || '') ;
+                setTimeout(()=>{
+                    history.push('/')
+                },3000);
+            }
+        }
+        catch(err){
+            console.error(err.message);
+        }
+    }
+
     return (
         <div className="d-flex flex-column flex-center p1 w-100">
             <div className="logo hidden-overflow mb1">
@@ -31,8 +54,8 @@ const Register = () => {
             <h2 className="text-uppercase mb1">Create an Account</h2>
 
             <Formik initialValues={InitialFormValues} validationSchema={ErrorMessageSchema}
-                onSubmit={(values) => console.log(values)}>
-                {({values, errors, touched, handleSubmit, handleChange, handleBlur, isValid}) => (
+                onSubmit={(values) => create(values)}>
+                {({values, errors, touched, handleSubmit, handleChange, handleBlur, isValid, isSubmitting}) => (
                     <form className="w-100" autoComplete="off" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="name" className={errors.name && touched.name ? 'error': ''}>Name *</label>
@@ -64,7 +87,7 @@ const Register = () => {
                              {errors.confirmPassword && touched.confirmPassword && <small className="form-message error">{errors.confirmPassword}</small>}
                         </div>
 
-                        <button disabled={ !isValid || !values.name} type="submit" className="btn text-upercase w-100 btn-primary raised">Create an account</button>
+                        <button disabled={ !isValid || !values.name || isSubmitting} type="submit" className="btn text-upercase w-100 btn-primary raised">{isSubmitting?'Loading...':'Create an account'}</button>
                     </form>
                 )}
             </Formik>

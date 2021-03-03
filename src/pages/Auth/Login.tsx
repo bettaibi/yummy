@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../assets/img/logo76.png';
 
+import { login, facebookLogin, googlelogin } from '../../services/AuthService';
+
 interface LoginForm {
     email: string;
     password: string;

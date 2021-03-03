@@ -19,6 +19,7 @@
     "react-scripts": "4.0.2",
     "swiper": "^6.4.15",
     "typescript": "^4.1.5",
+    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
@@ -59,6 +60,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "@types/uuid": "^8.3.0"
   }
 }

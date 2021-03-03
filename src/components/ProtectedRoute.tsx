@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import Authentification from '../Authentification';
 
 interface Props{
-    component: any,
+    component: React.FC<any>,
     path: string
 }
 
