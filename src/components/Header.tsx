@@ -4,6 +4,7 @@ import logoText from '../assets/img/logo-text.png';
 import profileImg from '../assets/img/profile.jpg';
 
 const Header = () => {
+    console.log("*** header init ***")
     return (
         <header className="bg-white border-bottom navbar" style={{height: '50px'}}>
             

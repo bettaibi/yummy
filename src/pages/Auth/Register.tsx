@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assets/img/logo76.png';
 
@@ -70,7 +71,7 @@ const Register = () => {
 
             <div className="d-flex flex-column text-center mt1">
                 <span style={{ marginBottom: '0.5rem' }}>Already have an account?</span>
-                <a href="#" className="link">Login</a>
+                <Link to="/auth/login" className="link">Login</Link>
             </div>
 
         </div>

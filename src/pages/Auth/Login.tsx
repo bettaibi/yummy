@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assets/img/logo76.png';
 
@@ -43,7 +44,7 @@ const Login: React.FC = () => {
                         </div>
 
                         <div className="w-100 text-right mb1">
-                            <a href="#" className="link">Reset Password?</a>
+                            <Link to="/auth/rest-password" className="link">Reset Password?</Link>
                         </div>
                         <button type="submit" className="btn text-upercase w-100 btn-primary raised"
                         disabled={ !isValid || !values.email}>Login</button>
@@ -60,7 +61,7 @@ const Login: React.FC = () => {
             <button className="btn btn-facebook raised" style={{ width: '200px' }}>Login with Facebook</button>
             <div className="d-flex flex-column text-center mt1">
                 <span style={{ marginBottom: '0.5rem' }}>Don't have an account?</span>
-                <a href="#" className="link">Create an account</a>
+                <Link to="/auth/register" className="link">Create an account</Link>
             </div>
 
         </div>

@@ -1,20 +1,24 @@
 import React from 'react'
 import Header from '../../components/Header';
 import MenuTab from '../../components/MenuTab';
-import Favorite from '../../pages/Favorite/Favorite';
 
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import Favorite from '../../pages/Favorite/Favorite';
 import Home from '../../pages/Home';
 import Setting from '../../pages/Setting/Setting';
 
 const User: React.FC = () => {
     return (
-        <React.Fragment>
+        <Router>
             <Header />
-              {/* <Home /> */}
-              {/* <Favorite /> */}
-              <Setting />
+               <Switch>
+                    <Route path='/' exact component={Home} />
+                    <Route path='/setting' component={Setting} />
+                    <Route path='/favorite' component={Favorite} />
+               </Switch>
             <MenuTab />
-        </React.Fragment>
+        </Router>
     )
 }
 

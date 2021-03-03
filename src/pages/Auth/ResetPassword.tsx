@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
+
 import logo from '../../assets/img/logo76.png';
 
 interface ResetPasswordForm{
