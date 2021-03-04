@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo76.png';
 
 import { login, facebookLogin, googlelogin } from '../../services/AuthService';
+import Google from '../../components/Google';
+import Facebook from '../../components/Facebook';
 
 interface LoginForm {
     email: string;
@@ -59,8 +61,13 @@ const Login: React.FC = () => {
                     OR
                 </span>
             </div>
-            <button className="btn btn-google raised" style={{ marginBottom: '0.5rem', width: '200px' }}>Login with Google</button>
-            <button className="btn btn-facebook raised" style={{ width: '200px' }}>Login with Facebook</button>
+
+            {/* <button className="btn btn-google raised" style={{ marginBottom: '0.5rem', width: '200px' }}>Login with Google</button>
+            <button className="btn btn-facebook raised" style={{ width: '200px' }}>Login with Facebook</button> */}
+
+            {/* <Google /> */}
+            <Facebook />
+          
             <div className="d-flex flex-column text-center mt1">
                 <span style={{ marginBottom: '0.5rem' }}>Don't have an account?</span>
                 <Link to="/auth/register" className="link">Create an account</Link>

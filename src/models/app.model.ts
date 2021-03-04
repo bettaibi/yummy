@@ -5,6 +5,7 @@ export interface IUser{
     email: string;
     password?: string;
     avatar?: string;
+    credential?: string;
 }
 
 export interface Ilogin{

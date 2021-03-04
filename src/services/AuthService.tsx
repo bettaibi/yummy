@@ -23,6 +23,7 @@ const register = async (user: IUser): Promise<any> =>{
             const uid = uuidv4();
             const newUser: IUser = {
                 ...user,
+                credential: 'regular',
                 id: uid
             };
             const saved = await db.collection('users').add(newUser, uid);
