@@ -1,10 +1,21 @@
-import React from 'react'
+import React, {useContext} from 'react'
 
 import logoText from '../assets/img/logo-text.png';
-import profileImg from '../assets/img/profile.jpg';
+import defaultProfileImg from '../assets/img/profile.jpg';
+import { Context } from '../store/Context';
 
 const Header = () => {
     console.log("*** header init ***")
+    const {currentUser} = useContext(Context);
+
+    const getAvatar = () =>{
+        if(currentUser?.avatar){
+            return currentUser.avatar;
+        }else{
+            return defaultProfileImg;
+        }
+    }
+
     return (
         <header className="bg-white border-bottom navbar" style={{height: '50px'}}>
             
@@ -15,7 +26,7 @@ const Header = () => {
                 </a>
 
                 <div className="user-avatar">
-                    <img src={profileImg} alt="user-avatar"/>
+                    <img src={getAvatar()} alt="user-avatar"/>
                 </div>
             </div>
           

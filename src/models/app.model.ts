@@ -12,3 +12,9 @@ export interface Ilogin{
     email: string;
     password: string;
 }
+
+
+export interface IRecipe{
+    name: string;
+    picture: string
+}
