@@ -1,52 +1,39 @@
 import db from './db';
 import { Ilogin, IUser } from '../models/app.model';
 
-import { v4 as uuidv4 } from 'uuid';
-
 console.log('Auth service loaded');
 
 const login = async (obj: Ilogin)=>{
-    const found = await findByEmail(obj.email);
-
-    if(found){
-
+ try{
+    const found: IUser = await findByEmail(obj.email);
+    if(found?.password){
+        if(obj.password === found.password){
+            return {success: true, message: 'Welcome again'};
+        }
+        else{
+            return {success: false, message: 'Wrong password'};
+        }
     }
     else{
-        console.info('No such Account');
+        return {success: false, message: 'No such Account'};
     }
+ }
+ catch(err){
+     throw err;
+ }
 }
 
 const register = async (user: IUser): Promise<any> =>{
     try{
-        const found = await findByEmail(user.email);
-        if(!found){
-            const uid = uuidv4();
-            const newUser: IUser = {
-                ...user,
-                credential: 'regular',
-                id: uid
-            };
-            const saved = await db.collection('users').add(newUser, uid);
-            if (saved) return newUser;
-            else return false;
-        }
-        else{
-            console.log("User already has an account")
-        }
-
+        const saved = await db.collection('users').add(user, user.id);
+        if (saved) return user;
+        else return false;
     }
     catch(err){
         throw err;
     }
 }
 
-const facebookLogin = ()=>{
-
-}
-
-const googlelogin = async ()=>{
-
-}
 
 const resetPassword = ()=>{
 
@@ -56,11 +43,12 @@ const findByEmail = async (email: string) =>{
    try{
         const found = await db.collection('users').doc({email}).get();
         console.log(found);
-        return found ? true : false;
+        return found;
    }
    catch(err){
        console.error(err.message)
    }
 }
 
-export { login, register, facebookLogin, googlelogin, resetPassword };
+
+export { login, register, resetPassword, findByEmail };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import logo from '../../assets/img/logo76.png';
 
@@ -23,6 +23,8 @@ const ErrorMessageShema = Yup.object().shape({
 const initialValues: ResetPasswordForm = { email: '', code: '', password: '', confirmPassword: '' };
 
 const ResetPassword: React.FC = () => {
+    const history = useHistory();
+    
 
     return (
         <div className="d-flex flex-column flex-center p1 w-100">

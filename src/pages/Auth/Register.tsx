@@ -4,8 +4,9 @@ import logo from '../../assets/img/logo76.png';
 
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
-import { register } from '../../services/AuthService';
+import { register, findByEmail } from '../../services/AuthService';
 import { useHistory } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 interface RegisterForm {
     name: string;
@@ -29,17 +30,26 @@ const Register: React.FC = () => {
 
     const create = async (values: RegisterForm) =>{
         try{
-           let created = await register({
-               email: values.email, 
-               name: values.name, 
-               password: values.password
-            });
-            if(created){
-                localStorage.setItem('token', created.id || '') ;
-                setTimeout(()=>{
-                    history.push('/')
-                },3000);
-            }
+           const found = await findByEmail(values.email);
+           const uid = uuidv4();
+           if(!found){
+            let created = await register({
+                email: values.email, 
+                name: values.name, 
+                password: values.password,
+                credential: 'regular',
+                id: uid
+             });
+             if(created){
+                 localStorage.setItem('token', uid) ;
+                 console.log('New use has been created');
+                 setTimeout(()=>{
+                     history.push('/')
+                 },3000);
+             }
+           }else {
+               console.log('Account exist');
+           }
         }
         catch(err){
             console.error(err.message);

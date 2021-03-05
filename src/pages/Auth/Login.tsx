@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../assets/img/logo76.png';
 
-import { login, facebookLogin, googlelogin } from '../../services/AuthService';
+import { login } from '../../services/AuthService';
 import Google from '../../components/Google';
 import Facebook from '../../components/Facebook';
+
+import {useHistory} from 'react-router-dom';
 
 interface LoginForm {
     email: string;
@@ -22,6 +24,25 @@ const ErrorMessageSchema = Yup.object().shape({
 });
 
 const Login: React.FC = () => {
+    const history = useHistory();
+
+    const userLogin = async (values: LoginForm) =>{
+        try{
+            const res = await login(values);
+            if(res.success){
+                console.log(res.message);
+                setTimeout(()=>{
+                    history.push('/');
+                },3000);
+            }
+            else{
+                console.log(res.message);
+            }
+        }
+        catch(err){
+            console.error(err.message);
+        }
+    }
 
     return (
         <div className="d-flex flex-column flex-center p1 w-100">
@@ -30,7 +51,7 @@ const Login: React.FC = () => {
             </div>
 
             <Formik initialValues= {initialValues} validationSchema={ErrorMessageSchema}
-            onSubmit= {(values)=> console.log(values)}>
+            onSubmit= {(values)=> userLogin(values)}>
                 {({errors, touched, handleBlur, handleChange, values, handleSubmit, isValid}) => (
                     <form className="w-100" autoComplete="off" onSubmit={handleSubmit}>
                         <div className="form-group">
@@ -62,10 +83,7 @@ const Login: React.FC = () => {
                 </span>
             </div>
 
-            {/* <button className="btn btn-google raised" style={{ marginBottom: '0.5rem', width: '200px' }}>Login with Google</button>
-            <button className="btn btn-facebook raised" style={{ width: '200px' }}>Login with Facebook</button> */}
-
-            {/* <Google /> */}
+            <Google />
             <Facebook />
           
             <div className="d-flex flex-column text-center mt1">
