@@ -25,7 +25,6 @@ const initialValues: ResetPasswordForm = { email: '', code: '', password: '', co
 const ResetPassword: React.FC = () => {
     const history = useHistory();
     
-
     return (
         <div className="d-flex flex-column flex-center p1 w-100">
             <div className="logo hidden-overflow mb1">

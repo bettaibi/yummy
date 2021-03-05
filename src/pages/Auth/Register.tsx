@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import logo from '../../assets/img/logo76.png';
 
@@ -23,11 +23,11 @@ const ErrorMessageSchema = Yup.object().shape({
     password: Yup.string().required('Password is required').min(6, 'Password should has 6 letters or more.'),
     confirmPassword: Yup.string().required('Password is required').min(6, 'Password should has 6 letters or more.')
     .oneOf([Yup.ref('password')], "Password must match")
-})
+});
 
 const Register: React.FC = () => {
     const history = useHistory();
-
+    
     const create = async (values: RegisterForm) =>{
         try{
            const found = await findByEmail(values.email);

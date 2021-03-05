@@ -1,13 +1,15 @@
-import React from 'react'
-import Login from '../../pages/Auth/Login';
-import Register from '../../pages/Auth/Register';
-import ResetPassword from '../../pages/Auth/ResetPassword';
-
+import React, { Suspense } from 'react';
 import {Switch, Route } from 'react-router-dom';
+
+import Loader from '../../components/Loader';
+
+const ResetPassword = React.lazy(()=> import('../../pages/Auth/ResetPassword'));
+const Register = React.lazy(()=> import('../../pages/Auth/Register'));
+const Login = React.lazy(() => import('../../pages/Auth/Login'));
 
 const Auth: React.FC = () => {
     return (
-        <React.Fragment>
+        <Suspense fallback={<Loader />}>
             <div className="h-100 w-100">
                 <Switch>
                     <Route path="/auth/register" component = {Register}/>
@@ -15,7 +17,7 @@ const Auth: React.FC = () => {
                     <Route path="/auth/rest-password" component = {ResetPassword}/>
                 </Switch>
             </div>
-        </React.Fragment>
+        </Suspense>
     )
 }
 
