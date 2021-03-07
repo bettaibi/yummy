@@ -10,6 +10,7 @@ import Google from '../../components/Google';
 import Facebook from '../../components/Facebook';
 
 import {useHistory} from 'react-router-dom';
+import { PortalComponent } from '../PortalComponent';
 
 interface LoginForm {
     email: string;
@@ -90,6 +91,10 @@ const Login: React.FC = () => {
                 <span style={{ marginBottom: '0.5rem' }}>Don't have an account?</span>
                 <Link to="/auth/register" className="link">Create an account</Link>
             </div>
+
+            <PortalComponent>
+                <p>this paraphrape is loaded inside a portal</p>
+            </PortalComponent>
 
         </div>
     )

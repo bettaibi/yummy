@@ -260,3 +260,13 @@
 .moveDown{
     animation: moveDown 1.2s ease-in-out infinite;
 }
+
+
+.overlay-container{
+    position: fixed;
+    top: 0;
+    height: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+}
