@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import Tags from '../components/Tags';
 import SearchWrapper from '../components/SearchWrapper';

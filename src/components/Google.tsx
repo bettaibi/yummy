@@ -6,8 +6,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { IUser } from '../models/app.model';
 import { Snackbar, useSnackbar } from './Snackbar';
 
+const GoogleClientID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
 const Google: React.FC = () => {
-    const GoogleClientID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
     const history = useHistory();
     const { showMsg, snackbarRef } = useSnackbar();
 

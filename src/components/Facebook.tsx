@@ -6,8 +6,9 @@ import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { Snackbar, useSnackbar } from './Snackbar';
 
+const appID = process.env.REACT_APP_FACEBOOK_APP_ID;
+
 const Facebook: React.FC = () => {
-    const appID = process.env.REACT_APP_FACEBOOK_APP_ID;
     const history = useHistory();
     const { showMsg, snackbarRef } = useSnackbar();
 

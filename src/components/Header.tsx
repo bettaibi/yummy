@@ -6,9 +6,10 @@ import { Context } from '../store/Context';
 
 const Header = () => {
     console.log("*** header init ***")
-    const {currentUser} = useContext(Context);
+    const {state} = useContext(Context);
 
     const getAvatar = () =>{
+        const {currentUser} = state;
         if(currentUser?.avatar){
             return currentUser.avatar;
         }else{
