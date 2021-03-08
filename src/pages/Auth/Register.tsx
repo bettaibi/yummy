@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { register, findByEmail } from '../../services/AuthService';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { Snackbar, useSnackbar, SnackbarType } from '../../components/Snackbar';
 
 interface RegisterForm {
     name: string;
@@ -27,7 +28,8 @@ const ErrorMessageSchema = Yup.object().shape({
 
 const Register: React.FC = () => {
     const history = useHistory();
-    
+    const {snackbarRef, showMsg} = useSnackbar();
+
     const create = async (values: RegisterForm) =>{
         try{
            const found = await findByEmail(values.email);
@@ -42,13 +44,13 @@ const Register: React.FC = () => {
              });
              if(created){
                  localStorage.setItem('token', uid) ;
-                 console.log('New use has been created');
+                 showMsg('New use has been created');
                  setTimeout(()=>{
                      history.push('/')
                  },3000);
              }
            }else {
-               console.log('Account exist');
+            showMsg('Account exist', SnackbarType.ERROR);
            }
         }
         catch(err){
@@ -106,7 +108,7 @@ const Register: React.FC = () => {
                 <span style={{ marginBottom: '0.5rem' }}>Already have an account?</span>
                 <Link to="/auth/login" className="link">Login</Link>
             </div>
-
+            <Snackbar ref = {snackbarRef} />
         </div>
     )
 }

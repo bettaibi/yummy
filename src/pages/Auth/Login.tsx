@@ -9,8 +9,10 @@ import { login } from '../../services/AuthService';
 import Google from '../../components/Google';
 import Facebook from '../../components/Facebook';
 
-import {useHistory} from 'react-router-dom';
-import { PortalComponent } from '../PortalComponent';
+import { useHistory} from 'react-router-dom';
+
+import { Snackbar, SnackbarType, useSnackbar } from '../../components/Snackbar';
+
 
 interface LoginForm {
     email: string;
@@ -26,23 +28,29 @@ const ErrorMessageSchema = Yup.object().shape({
 
 const Login: React.FC = () => {
     const history = useHistory();
-    
-    const userLogin = async (values: LoginForm) =>{
+    const { snackbarRef, showMsg } = useSnackbar();
+
+    const userLogin = async (values: LoginForm) => {
         try{
             const res = await login(values);
             if(res.success){
-                console.log(res.message);
+                showMsg(res.message);
+
                 setTimeout(()=>{
                     history.push('/');
                 },3000);
             }
             else{
-                console.log(res.message);
+                showMsg(res.message, SnackbarType.ERROR);
             }
         }
         catch(err){
             console.error(err.message);
         }
+    }
+
+    const testSnack = ()=>{
+        showMsg('this is a message')
     }
 
     return (
@@ -91,11 +99,8 @@ const Login: React.FC = () => {
                 <span style={{ marginBottom: '0.5rem' }}>Don't have an account?</span>
                 <Link to="/auth/register" className="link">Create an account</Link>
             </div>
-
-            <PortalComponent>
-                <p>this paraphrape is loaded inside a portal</p>
-            </PortalComponent>
-
+            <Snackbar ref={snackbarRef} />
+            <button className="btn btn-dark raised" onClick={testSnack}>Test</button>
         </div>
     )
 }

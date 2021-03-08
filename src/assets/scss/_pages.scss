@@ -270,3 +270,38 @@
     width: 100%;
     background-color: rgba(0,0,0,.5);
 }
+
+.snackbar{
+    position: fixed;
+    bottom: 0;
+    opacity: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: map-get($theme-colors, 'light');
+    z-index: 9999;
+    min-width: 250px;
+    padding: 0.5rem;
+    border-radius: 4px;
+    &.success{
+        background-color: map-get($theme-colors, 'success');
+    }
+    &.error{
+        background-color: map-get($theme-colors, 'danger');
+    }
+    &.open{
+        animation: fadeDown 200ms ease-in-out forwards;
+    }
+    @extend .shadow;
+}
+
+@keyframes fadeDown{
+    from{
+        bottom: 0;
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+        bottom: 40px;
+    }
+}

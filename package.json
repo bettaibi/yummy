@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "emailjs-com": "^2.6.4",
     "formik": "^2.2.6",
+    "gsap": "^3.6.0",
     "localbase": "^0.7.4",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",

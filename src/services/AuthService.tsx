@@ -42,7 +42,6 @@ const resetPassword = ()=>{
 const findByEmail = async (email: string) =>{
    try{
         const found = await db.collection('users').doc({email}).get();
-        console.log(found);
         return found;
    }
    catch(err){
