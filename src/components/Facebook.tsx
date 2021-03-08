@@ -4,18 +4,20 @@ import { IUser } from '../models/app.model';
 import { register, findByEmail } from '../services/AuthService';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { Snackbar, useSnackbar } from './Snackbar';
 
 const Facebook: React.FC = () => {
     const appID = process.env.REACT_APP_FACEBOOK_APP_ID;
     const history = useHistory();
+    const { showMsg, snackbarRef } = useSnackbar();
 
     const responseFacebook = async (response: any) => {
         try{
             if(response){
-                console.log(response)
                 const found: IUser = await findByEmail(response.email);
                 if(found){
                     localStorage.setItem('token', found.id);
+                    showMsg(`Welcome again ${found.name}`)
                     setTimeout(()=>{
                         history.push('/');
                     },3000);
@@ -28,8 +30,9 @@ const Facebook: React.FC = () => {
                         avatar: response.picture.data.url
                     };
                     const created = await register(newUser);
-                    if(created){
+                    if(created.success){
                         localStorage.setItem('token', newUser.id);
+                        showMsg(`Welcome again ${newUser.name}`)
                         setTimeout(()=>{
                             history.push('/');
                         },3000);
@@ -42,16 +45,17 @@ const Facebook: React.FC = () => {
         }
     }
 
-    console.log(appID)
-
     return (
-        <FacebookLogin
-        appId= {appID || ''}
-        autoLoad={false}
-        fields="name,email,picture"
-        callback={responseFacebook}
-        cssClass= 'btn btn-facebook raised fa-200'
-      />
+       <React.Fragment>
+            <FacebookLogin
+                appId= {appID || ''}
+                autoLoad={false}
+                fields="name,email,picture"
+                callback={responseFacebook}
+                cssClass= 'btn btn-facebook raised fa-200'
+            />
+            <Snackbar ref={snackbarRef} />
+       </React.Fragment>
     )
 }
 

@@ -49,10 +49,6 @@ const Login: React.FC = () => {
         }
     }
 
-    const testSnack = ()=>{
-        showMsg('this is a message')
-    }
-
     return (
         <div className="d-flex flex-column flex-center p1 w-100">
             <div className="logo hidden-overflow mb1">
@@ -100,7 +96,6 @@ const Login: React.FC = () => {
                 <Link to="/auth/register" className="link">Create an account</Link>
             </div>
             <Snackbar ref={snackbarRef} />
-            <button className="btn btn-dark raised" onClick={testSnack}>Test</button>
         </div>
     )
 }

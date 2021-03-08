@@ -42,7 +42,7 @@ const Register: React.FC = () => {
                 credential: 'regular',
                 id: uid
              });
-             if(created){
+             if(created.success){
                  localStorage.setItem('token', uid) ;
                  showMsg('New use has been created');
                  setTimeout(()=>{
