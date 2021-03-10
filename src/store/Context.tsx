@@ -7,6 +7,7 @@ export interface IContext{
     currentUser: IUser,
     recipies: IRecipe[];
     query: string;
+    results: number;
 }
 
 const INITIAL_VALUE: IUser = {
@@ -31,7 +32,8 @@ class Provider extends React.Component{
         this.state = {
             currentUser: INITIAL_VALUE,
             recipies: [],
-            query: ''
+            query: '',
+            results: 0
         };
         console.log("my provider class component has initialized")
         
@@ -65,7 +67,7 @@ class Provider extends React.Component{
         try{
             const res = await axios.get(`${BaseURL}?q=${q}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=10&calories=591-722&health=alcohol-free`);
             const data = await res.data;
-            this.setState({recipies: data.hits, query: q});
+            this.setState({recipies: data.hits, query: q, results: data.count});
             console.log(data)
         }
         catch(err){

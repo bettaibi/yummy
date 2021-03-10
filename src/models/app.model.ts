@@ -15,6 +15,7 @@ export interface Ilogin{
 
 
 export interface IRecipe{
+    id?: string;
     label: string;
     image: string;
     cautions: any[];
@@ -27,4 +28,10 @@ export interface IRecipe{
     ingredients: any;
     mealType: string[];
     totalNutrients: any[];
+}
+
+export interface JSONResponse{
+    success: boolean;
+    message: string;
+    data?: any; 
 }

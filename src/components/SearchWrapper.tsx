@@ -4,7 +4,8 @@ import arrowDown from '../assets/icons/arrow_down.svg';
 import { Context } from '../store/Context';
 
 const SearchWrapper: React.FC = () => {
-    const { setQuery } = useContext(Context);
+    const { setQuery, state } = useContext(Context);
+    const { results, query } = state;
 
     const searchForNewRecipe = (val: string) =>{
         try{ 
@@ -17,17 +18,19 @@ const SearchWrapper: React.FC = () => {
     };
 
     return (
-        <div className="w-100 search-wrapper d-flex flex-column text-center py-1">
-            <div className="w-100 container d-flex flex-column px-1" style={{alignItems: 'center', marginTop: '3rem'}}>
+        <div className="w-100 h-100 search-wrapper d-flex flex-column text-center py-1" style={{alignItems: 'center', justifyContent:'center'}}>
+            <div className="w-100 container d-flex flex-column px-1" style={{alignItems: 'center', justifyContent:'center'}}>
                 <h2 className="text-white">What would you like today?</h2>
                 <span>let's cook something</span>
                 <SearchInput onSearch={(val) => searchForNewRecipe(val)} />
             </div>
 
-            <div className="container px-1" style={{marginTop:'2rem'}}>
-                <h4 className="text-white">Today's recipe</h4>
+           {results > 0 && <div className="container px-1" style={{marginTop:'1rem'}}>
+                <h4 className="text-white">
+                   {`We have found some results related to "${query}", scroll down to check them out.`}
+                </h4>
                 <img src={arrowDown} alt="scroll down" height="40" style={{filter: 'invert(1)'}} className="moveDown" />
-            </div>
+            </div>}
         </div>
     )
 }

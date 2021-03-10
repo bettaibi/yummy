@@ -13,7 +13,9 @@ const Recipies: React.FC = () => {
     return (
         <div className="recipe-container">
            <div className="container p1">
-              <h4 className="fw-600" style={{marginBottom: '1rem'}}>Most popular</h4>
+              <h4 className="fw-600" style={{marginBottom: '1rem'}}>
+                 {`${state.results} results found`}
+              </h4>
               <div className="grid">
                  {
                     recipies.map((item: any) => (

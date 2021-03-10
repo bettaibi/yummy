@@ -1,15 +1,12 @@
 import db from './db';
-import { Ilogin, IUser } from '../models/app.model';
+import { Ilogin, IUser, JSONResponse } from '../models/app.model';
+import { toJsonResponse } from '../shared/util';
 
 console.log('Auth service loaded');
 
-interface JSONResponse{
-    success: boolean;
-    message: string;
-    data?: any;
-}
 
-const login = async (obj: Ilogin): Promise<JSONResponse>=>{
+
+const login = async (obj: Ilogin): Promise<JSONResponse> =>{
  try{
     const found: IUser = await findByEmail(obj.email);
     if(found?.password){
@@ -54,12 +51,6 @@ const findByEmail = async (email: string): Promise<any> => {
    }
 }
 
-const toJsonResponse = (success: boolean, message: string, data?: any): JSONResponse =>{
-    return {
-        success,
-        message,
-        data
-    };
-};
+
 
 export { login, register, resetPassword, findByEmail };

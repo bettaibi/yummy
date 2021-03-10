@@ -1,13 +1,46 @@
 import React from 'react'
-import recipe1 from '../assets/img/recipe1.jpg';
 import favorite from '../assets/icons/favorite.svg';
 import { IRecipe } from '../models/app.model';
+
+import { addToFavourite, removeOne, findOne } from '../services/UserService';
+import { Snackbar, useSnackbar, SnackbarType} from './Snackbar';
 
 interface RecipeProps{
     recipe: IRecipe
 }
 
 const Recipe: React.FC<RecipeProps> = ({recipe}) => {
+    const { showMsg, snackbarRef } = useSnackbar();
+
+    const saveToFavourite = async () =>{
+      try{
+         const found = await findOne(recipe.label);
+         if(found){
+             // remove it from favourite list
+             const removed = await removeOne(recipe.label);
+             if(removed.success) {
+                showMsg(removed.message)
+             }
+             else{
+                showMsg(removed.message, SnackbarType.ERROR)
+             }
+         }
+         else{
+             // Add it to your favourite list
+             const saved = await addToFavourite(recipe);
+             if(saved.success){
+                 showMsg(saved.message)
+             }
+             else{
+                showMsg(saved.message, SnackbarType.ERROR)
+             }
+         }
+         
+      }
+      catch(err){
+          console.error(err.message)
+      }
+    };
 
     return (
         <div>
@@ -22,12 +55,13 @@ const Recipe: React.FC<RecipeProps> = ({recipe}) => {
                    {recipe.calories && <h5 className="text-secondary fw-600">Calories: {recipe.calories.toFixed(2)} </h5>}
                     <div className="d-flex flex-row flex-space-between w-100">
                         <a href="#" className="link">More details</a>
-                        <span className="d-flex flex-center" style={{cursor: 'pointer'}}>
+                        <span className="d-flex flex-center" style={{cursor: 'pointer'}} onClick={saveToFavourite}>
                             <img src={favorite} alt="Add to favorite" />
                         </span>
                     </div>
                 </div>
             </div>
+            <Snackbar ref= {snackbarRef} />
         </div>
     )
 }
