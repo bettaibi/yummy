@@ -1,38 +1,30 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { v4 } from 'uuid';
+import { Context } from '../../store/Context';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper.scss';
 import './Favorite.scss';
-import recipe2 from '../../assets/img/recipe2.jpg';
 
 const SwiperCard: React.FC = () => {
-    const cards = [1,2,3,5,6,4];
-    
+    const { state } = useContext(Context);
+    const recipies = state.recipies.slice(0, 8);
+    console.log(recipies)
     return (
         <React.Fragment>
-            <h4 className="fw-600 mb1">Related Recipies</h4>
-            <Swiper
-                spaceBetween={16}
-              
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)} >
-                
+            <h4 className="fw-600 mb1 m1">Recently searched</h4>
+            <div className="d-flex flex-row mb1 w-100 scroll-container">
                 {
-                    cards.map(item =>(
-                        <SwiperSlide key= {item} className="shadow-sm bg-white swipper-card">
-                        <div className="swipper-cover">
-                            <img src={recipe2} alt="related recipies"/>
-                            <div className="swipper-content">
-                                <h4 className="fw-600 text-white" style={{margin: '0'}}>Name</h4>
-                                <small className="text-white">{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ad distinctio dolorum sed labore, doloremque in autem recusandae eligendi! Minima, molestiae exercitationem quaerat ducimus sequi nostrum quis unde laborum ipsum?'.substr(0,40)+'...'}</small> 
+                    recipies.map((item: any) => (
+                        <div key={v4()} className="ml1 r_item">
+                            <div className="cover shadow-sm bg-white" style={{marginBottom: '0.5rem'}}>
+                                <img draggable={false} src={item.recipe.image} alt="related recipies" />
                             </div>
+                            <h4 className="fw-600 text-dark" style={{ margin: '0' }}>{item.recipe.label}</h4>
                         </div>
-                      </SwiperSlide>
                     ))
                 }
 
-               
-            </Swiper>
+
+            </div>
         </React.Fragment>
     )
 }

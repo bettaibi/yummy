@@ -38,6 +38,19 @@ const removeOne = async (label: string) : Promise<JSONResponse> =>{
     }
 }
 
+const getFavourites = async (): Promise<JSONResponse> =>{
+    try{
+        const data = await db.collection('favourites').get();
+        if(data){
+            return toJsonResponse(true, 'favourite list', data);
+        }
+        return toJsonResponse(false, "Failed to get favourite list");
+    }
+    catch(err){
+        throw err;
+    }
+}
+
 const getCurrentUser = async(id: string) =>{
     try{
         const found = await db.collection('users').doc({id}).get();
@@ -53,4 +66,4 @@ const getCurrentUser = async(id: string) =>{
 
 
 
-export { getCurrentUser, addToFavourite, findOne, removeOne }
+export { getCurrentUser, addToFavourite, findOne, removeOne, getFavourites}
