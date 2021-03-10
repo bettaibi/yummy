@@ -3,9 +3,9 @@ import { IRecipe, IUser } from '../models/app.model';
 import { getCurrentUser } from '../services/UserService';
 import axios from 'axios';
 
-interface IContext{
-    currentUser?: IUser,
-    recipes?: IRecipe[];
+export interface IContext{
+    currentUser: IUser,
+    recipies: IRecipe[];
     query: string;
 }
 
@@ -16,7 +16,7 @@ const INITIAL_VALUE: IUser = {
     credential: ''
 };
 
-const Context = React.createContext<any>({currentUser: INITIAL_VALUE, recipes: [], query: ''});
+const Context = React.createContext<any>({currentUser: INITIAL_VALUE, recipies: [], query: ''});
 
 const APP_ID = process.env.REACT_APP_RECIPE_ID;
 const APP_KEY = process.env.REACT_APP_RECIPE_KEY;
@@ -30,10 +30,10 @@ class Provider extends React.Component{
         super(props);
         this.state = {
             currentUser: INITIAL_VALUE,
-            recipes: [],
-            query: 'pizza'
+            recipies: [],
+            query: ''
         };
-        console.log("my provider class component")
+        console.log("my provider class component has initialized")
         
     };
 
@@ -43,9 +43,7 @@ class Provider extends React.Component{
     };
 
     componentDidUpdate(): void{
-        console.log(this.state.query)
-        console.log('Context component updated')
-        this.getRecipies();
+
     }
 
     async getCurrentConnectedUser(){
@@ -63,10 +61,11 @@ class Provider extends React.Component{
         }
     }
 
-    async getRecipies(){
+    async getRecipies(q: string){
         try{
-            const res = await axios.get(`${BaseURL}?q=${this.state.query}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=10&calories=591-722&health=alcohol-free`);
+            const res = await axios.get(`${BaseURL}?q=${q}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=10&calories=591-722&health=alcohol-free`);
             const data = await res.data;
+            this.setState({recipies: data.hits, query: q});
             console.log(data)
         }
         catch(err){
@@ -75,7 +74,8 @@ class Provider extends React.Component{
     }
 
     updateQuery = (q: string) =>{
-        this.setState({query: q});
+       if(q !== this.state.query)
+       this.getRecipies(q);
     };
 
     render(): JSX.Element{
