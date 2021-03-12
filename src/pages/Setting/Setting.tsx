@@ -3,6 +3,7 @@ import GoogleLogoutButton from '../../components/GoogleLogoutButton';
 import { Snackbar, useSnackbar } from '../../components/Snackbar';
 import { deleteUserAccount } from '../../services/UserService';
 import { Context } from '../../store/Context';
+
 import i18next from 'i18next';
 
 import './Setting.scss';
@@ -50,13 +51,20 @@ const LanguageSetting: React.FC = () =>{
 }
 
 const ThemeSetting: React.FC = () => {
+    const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'light');
+    
+    const changeTheme = (mode: string) =>{
+        localStorage.setItem('theme', mode);
+        document.body.setAttribute('data-theme', mode);
+        setTheme(mode);
+    };
 
     return(
         <div className="mb1">
             <h4 className="fw-600">Theme Setting</h4>
             <div className="d-flex flex-row">
-                <span className="theme-setting light active shadow-sm"></span>
-                <span className="theme-setting dark shadow-sm"></span>
+                <span className={`theme-setting light shadow-sm ${theme=='light'?'active': ''}`} onClick={()=>changeTheme('light')}></span>
+                <span className={`theme-setting dark shadow-sm ${theme=='dark'?'active': ''}`} onClick={()=>changeTheme('dark')}></span>
             </div>
         </div>
     )

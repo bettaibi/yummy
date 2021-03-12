@@ -8,11 +8,14 @@ import './i18n';
 import i18next from 'i18next';
 
 const lang = localStorage.getItem('lang') || 'en';
+const theme = localStorage.getItem('theme') || 'light';
 
 axios.defaults.headers.common['Accept-Language'] = lang;
 axios.defaults.baseURL = 'https://api.edamam.com';
 
 i18next.changeLanguage(lang);
+
+document.body.setAttribute('data-theme', theme);
 
 ReactDOM.render(
   <React.StrictMode>
