@@ -35,7 +35,6 @@ const Login: React.FC = () => {
             const res = await login(values);
             if(res.success){
                 showMsg(res.message);
-
                 setTimeout(()=>{
                     history.push('/');
                 },3000);

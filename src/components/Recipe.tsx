@@ -11,6 +11,7 @@ interface RecipeProps{
 
 const Recipe: React.FC<RecipeProps> = ({recipe}) => {
     const { showMsg, snackbarRef } = useSnackbar();
+    const key = localStorage.getItem('token') || '';
 
     const saveToFavourite = async () =>{
       try{
@@ -27,7 +28,7 @@ const Recipe: React.FC<RecipeProps> = ({recipe}) => {
          }
          else{
              // Add it to your favourite list
-             const saved = await addToFavourite(recipe);
+             const saved = await addToFavourite({...recipe, userId: key});
              if(saved.success){
                  showMsg(saved.message)
              }

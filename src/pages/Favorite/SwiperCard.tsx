@@ -6,8 +6,10 @@ import './Favorite.scss';
 
 const SwiperCard: React.FC = () => {
     const { state } = useContext(Context);
-    const recipies = state.recipies.slice(0, 8);
-    console.log(recipies)
+    const recipies: any[] = state.recipies.slice(0, 8);
+
+    if(recipies.length == 0) return null;
+
     return (
         <React.Fragment>
             <h4 className="fw-600 mb1 m1">Recently searched</h4>
@@ -22,8 +24,6 @@ const SwiperCard: React.FC = () => {
                         </div>
                     ))
                 }
-
-
             </div>
         </React.Fragment>
     )

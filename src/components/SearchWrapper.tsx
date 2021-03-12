@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import searchIcon from '../assets/icons/search.svg';
 import arrowDown from '../assets/icons/arrow_down.svg';
 import { Context } from '../store/Context';
+import i18next from "i18next";
 
 const SearchWrapper: React.FC = () => {
     const { setQuery, state } = useContext(Context);
@@ -20,7 +21,7 @@ const SearchWrapper: React.FC = () => {
     return (
         <div className="w-100 h-100 search-wrapper d-flex flex-column text-center py-1" style={{alignItems: 'center', justifyContent:'center'}}>
             <div className="w-100 container d-flex flex-column px-1" style={{alignItems: 'center', justifyContent:'center'}}>
-                <h2 className="text-white">What would you like today?</h2>
+                <h2 className="text-white">{i18next.t('What would you like today?')}</h2>
                 <span>let's cook something</span>
                 <SearchInput onSearch={(val) => searchForNewRecipe(val)} initialValue={query} />
             </div>

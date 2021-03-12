@@ -22,8 +22,6 @@ const Context = React.createContext<any>({currentUser: INITIAL_VALUE, recipies: 
 const APP_ID = process.env.REACT_APP_RECIPE_ID;
 const APP_KEY = process.env.REACT_APP_RECIPE_KEY;
 
-const BaseURL = `https://api.edamam.com/search`;
-
 class Provider extends React.Component{
     state: IContext;
 
@@ -44,10 +42,6 @@ class Provider extends React.Component{
         this.getCurrentConnectedUser();
     };
 
-    componentDidUpdate(): void{
-
-    }
-
     async getCurrentConnectedUser(){
         try{
             const id = localStorage.getItem('token');
@@ -65,7 +59,7 @@ class Provider extends React.Component{
 
     async getRecipies(q: string){
         try{
-            const res = await axios.get(`${BaseURL}?q=${q}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=10&calories=591-722&health=alcohol-free`);
+            const res = await axios.get(`/search?q=${q}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=10&calories=591-722&health=alcohol-free`);
             const data = await res.data;
             this.setState({recipies: data.hits, query: q, results: data.count});
             console.log(data)

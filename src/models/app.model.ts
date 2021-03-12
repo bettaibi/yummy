@@ -5,7 +5,7 @@ export interface IUser{
     email: string;
     password?: string;
     avatar?: string;
-    credential?: string;
+    credential: string;
 }
 
 export interface Ilogin{
@@ -15,7 +15,6 @@ export interface Ilogin{
 
 
 export interface IRecipe{
-    id?: string;
     label: string;
     image: string;
     cautions: any[];
@@ -28,6 +27,7 @@ export interface IRecipe{
     ingredients: any;
     mealType: string[];
     totalNutrients: any[];
+    userId?: string;
 }
 
 export interface JSONResponse{

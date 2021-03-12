@@ -3,6 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import axios from 'axios';
+import './i18n';
+import i18next from 'i18next';
+
+const lang = localStorage.getItem('lang') || 'en';
+
+axios.defaults.headers.common['Accept-Language'] = lang;
+axios.defaults.baseURL = 'https://api.edamam.com';
+
+i18next.changeLanguage(lang);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -12,7 +12,7 @@ const Favorite: React.FC = () => {
 
     useEffect(() => {
         getFavouriteRecipies();
-    }, [])
+    }, []);
 
     const readMore = () =>{
         try{
@@ -54,7 +54,7 @@ const Favorite: React.FC = () => {
         <main className="main w-100 overflow-hidden" style={{marginTop: '50px'}}>
 
             <SwiperCard/>
-
+            {favouriteList.length != 0 && 
              <div className="p1">
                 <h4 className="fw-600 my-1">My Favorite recipies</h4>
                 {
@@ -79,7 +79,11 @@ const Favorite: React.FC = () => {
                         </div>
                     ))
                 }
-             </div>
+             </div>}
+
+            {favouriteList.length == 0 && <div className="w-100 h-100 d-flex flex-center p1">
+                <h5>No Favourite recipies to show</h5>
+             </div>}
          <Snackbar ref={snackbarRef} />
         </main>
     )

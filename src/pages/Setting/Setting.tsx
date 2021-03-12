@@ -1,6 +1,13 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
+import GoogleLogoutButton from '../../components/GoogleLogoutButton';
+import { Snackbar, useSnackbar } from '../../components/Snackbar';
+import { deleteUserAccount } from '../../services/UserService';
+import { Context } from '../../store/Context';
+import i18next from 'i18next';
 
 import './Setting.scss';
+
+const key = localStorage.getItem('token');
 
 const Setting: React.FC = () => {
     return (
@@ -16,11 +23,24 @@ const Setting: React.FC = () => {
 }
 
 const LanguageSetting: React.FC = () =>{
+    let [lang, setLang] = useState<string>(localStorage.getItem('lang') || 'en');
+
+    const updateLang = (e: any) =>{
+        try{
+            e.preventDefault();
+            lang = e.target.value;
+            localStorage.setItem('lang', e.target.value);
+            i18next.changeLanguage(e.target.value);
+
+            setLang(e.target.value);
+        }
+        catch(err){throw err;}
+    };
 
     return(
         <div className="mb1">
             <h4 className="fw-600 mb1">Language Setting</h4>
-            <select name="lang" id="lang" className="form-select">
+            <select name="lang" id="lang" className="form-select" onChange={updateLang} value={lang}>
                 <option value="en">English</option>
                 <option value="fr">French</option>
                 <option value="ar">Arabic</option>
@@ -72,14 +92,45 @@ const ChangePasswordSetting: React.FC = () => {
 }
 
 const AccountSetting: React.FC = () => {
+    const { state } = useContext(Context);
+    const credential = state.currentUser.credential;
+    const { snackbarRef, showMsg } = useSnackbar();
+
+    const logout = ()=> {
+        try{
+            localStorage.clear();
+            window.location.reload();
+        }
+        catch(err){
+            throw err;
+        }
+    };
+
+    const deleteAccount = () => {
+        try{
+            deleteUserAccount(key || '').then((res)=>{
+                if(res?.success){
+                    showMsg(res.message);
+                    logout();
+                }
+            });
+        }
+        catch(err){
+            throw err;
+        }
+    }
 
     return (
         <div className="mb1">
             <h4 className="fw-600 mb1">Account Setting</h4>
             <div className="flex flex-row text-right">
-                <button className="btn btn-secondary raised" style={{marginRight: '0.5rem'}}>Logout</button>
-                <button className="btn btn-danger raised">Delete Account</button>
+               {credential !="Google" && <button className="btn btn-secondary raised" onClick={logout}>
+                    Logout
+                </button>}
+                { credential =="Google" && <GoogleLogoutButton /> }
+                <button className="btn btn-danger raised" style={{marginLeft: '0.5rem'}} onClick={deleteAccount}>Delete Account</button>
             </div>
+            <Snackbar ref={snackbarRef} />
         </div>
     )
 }

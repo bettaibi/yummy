@@ -2,5 +2,7 @@
 import Localbase from 'localbase';
 
 const db = new Localbase('yummy');
-console.log("database running...")
+
+db.config.debug = false
+
 export default db;

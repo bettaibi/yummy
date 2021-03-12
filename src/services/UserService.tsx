@@ -64,6 +64,27 @@ const getCurrentUser = async(id: string) =>{
     }
 };
 
+const deleteUserAccount = async (id: string) =>{
+   try{
+    const deleted = await db.collection('users').doc({id}).delete();
+    if(deleted){
+        return await cleanUserAccount(id);
+    }
+   }
+   catch(err){
+       throw err;
+   }
+};
+
+const cleanUserAccount = async (userId: string): Promise<JSONResponse> =>{
+    try{
+        const removed = await db.collection('favourites').doc({userId}).delete();
+        return toJsonResponse(true, 'Account removed');
+    }   
+    catch(err){
+        throw err;
+    }
+}
 
 
-export { getCurrentUser, addToFavourite, findOne, removeOne, getFavourites}
+export { getCurrentUser, addToFavourite, findOne, removeOne, getFavourites, deleteUserAccount}
