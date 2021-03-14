@@ -1,17 +1,19 @@
 import React, { useContext, useState } from 'react';
 import searchIcon from '../assets/icons/search.svg';
 import arrowDown from '../assets/icons/arrow_down.svg';
+import whiteLoader from '../assets/icons/white_loader.svg';
 import { Context } from '../store/Context';
 import i18next from "i18next";
 
 const SearchWrapper: React.FC = () => {
     const { setQuery, state } = useContext(Context);
-    const { results, query } = state;
+    const { results, query, loading } = state;
 
     const searchForNewRecipe = (val: string) =>{
         try{ 
-            if(val)
-            setQuery(val);
+            if(val){
+                setQuery(val);
+            }
         }
         catch(err){
             throw err;
@@ -25,6 +27,10 @@ const SearchWrapper: React.FC = () => {
                 <span>let's cook something</span>
                 <SearchInput onSearch={(val) => searchForNewRecipe(val)} initialValue={query} />
             </div>
+
+            {loading && <div className="container px-1" style={{marginTop:'1rem'}} >
+                <img src={whiteLoader} />
+            </div>}
 
            {results > 0 && <div className="container px-1" style={{marginTop:'1rem'}}>
                 <h4 className="text-white">

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Auth from './layouts/auth/Auth';
 import User from './layouts/user/User';
 

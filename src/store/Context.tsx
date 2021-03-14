@@ -8,6 +8,7 @@ export interface IContext{
     recipies: IRecipe[];
     query: string;
     results: number;
+    loading: boolean;
 }
 
 const INITIAL_VALUE: IUser = {
@@ -31,14 +32,12 @@ class Provider extends React.Component{
             currentUser: INITIAL_VALUE,
             recipies: [],
             query: '',
-            results: 0
-        };
-        console.log("my provider class component has initialized")
-        
+            results: 0,
+            loading: false
+        };        
     };
 
     componentDidMount() : void{
-        console.log(this.state)
         this.getCurrentConnectedUser();
     };
 
@@ -61,8 +60,8 @@ class Provider extends React.Component{
         try{
             const res = await axios.get(`/search?q=${q}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=10&calories=591-722&health=alcohol-free`);
             const data = await res.data;
-            this.setState({recipies: data.hits, query: q, results: data.count});
-            console.log(data)
+            return data;
+            
         }
         catch(err){
             throw err;
@@ -70,8 +69,12 @@ class Provider extends React.Component{
     }
 
     updateQuery = (q: string) =>{
-       if(q !== this.state.query)
-       this.getRecipies(q);
+       if(q !== this.state.query){
+        this.setState({loading: true});
+        this.getRecipies(q).then((data: any)=>{
+            this.setState({recipies: data.hits, query: q, results: data.count, loading: false});
+        })
+       }
     };
 
     render(): JSX.Element{

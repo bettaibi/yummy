@@ -1,11 +1,11 @@
 import React, {useContext} from 'react'
 
-import logoText from '../assets/img/logo-text.png';
+import logoText from '../assets/img/text-logo.png';
+
 import defaultProfileImg from '../assets/img/profile.jpg';
 import { Context } from '../store/Context';
 
-const Header = () => {
-    console.log("*** header init ***")
+const Header: React.FC = () => {
     const {state} = useContext(Context);
 
     const getAvatar = () =>{
@@ -20,10 +20,9 @@ const Header = () => {
     return (
         <header className="bg-white border-bottom navbar" style={{height: '50px'}}>
             
-            <div className="container p1 d-flex flex-row flex-space-between h-100">
-                <a className="logo-text d-flex flex-center">
-                    {/* <img src={logoText} alt="Text logo"/> */}
-                    Yammy
+            <div className="container d-flex flex-row flex-space-between h-100">
+                <a className="logo-text d-flex flex-center" style={{height: '40px', width:'100px'}}>
+                   <img src={logoText} alt=""/>
                 </a>
 
                 <div className="user-avatar">
