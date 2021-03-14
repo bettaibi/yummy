@@ -55,7 +55,7 @@ const ThemeSetting: React.FC = () => {
     
     const changeTheme = (mode: string) =>{
         localStorage.setItem('theme', mode);
-        document.body.setAttribute('data-theme', mode);
+        document.body.className = mode;
         setTheme(mode);
     };
 

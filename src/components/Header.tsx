@@ -20,7 +20,7 @@ const Header: React.FC = () => {
     return (
         <header className="bg-white border-bottom navbar" style={{height: '50px'}}>
             
-            <div className="container d-flex flex-row flex-space-between h-100">
+            <div className="container pr1 d-flex flex-row flex-space-between h-100">
                 <a className="logo-text d-flex flex-center" style={{height: '40px', width:'100px'}}>
                    <img src={logoText} alt=""/>
                 </a>

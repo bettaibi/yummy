@@ -15,7 +15,7 @@ axios.defaults.baseURL = 'https://api.edamam.com';
 
 i18next.changeLanguage(lang);
 
-document.body.setAttribute('data-theme', theme);
+document.body.className = theme;
 
 ReactDOM.render(
   <React.StrictMode>
